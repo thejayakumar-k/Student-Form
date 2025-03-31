@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Form</title>
+  </head>
+
+  <style>
+    .section-one {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .section-two {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    td {
+      padding: 2px;
+    }
+  </style>
+
+  <body>
+    <section class="section-one">
+      <h1>STUDENT FORM</h1>
+
+      <table border="1">
+        <tr>
+          <td><strong>Name</strong></td>
+          <td><input type="text" class="name1" /></td>
+        </tr>
+
+        <tr>
+          <td><strong>Age</strong></td>
+          <td><input type="number" class="age1" /></td>
+        </tr>
+
+        <tr>
+          <td><strong>Gender</strong></td>
+          <td>
+            <input type="radio" name="gender" value="Male" /> Male
+            <input type="radio" name="gender" value="Female" /> Female
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Course</strong></td>
+          <td>
+            <select id="courseSelect" style="width: 100%">
+              <option value="1">Javascript</option>
+              <option value="2">Java</option>
+              <option value="3">Python</option>
+            </select>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>E-mail</strong></td>
+          <td><input type="text" class="email1" /></td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <button style="width: 100%; background-color: aqua" class="btn">
+              Save
+            </button>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="section-two">
+      <table border="1" class="container" style="width: 40%">
+        <tr>
+          <td><strong>Name</strong></td>
+          <td><strong>Age</strong></td>
+          <td><strong>Gender</strong></td>
+          <td><strong>Course</strong></td>
+          <td><strong>Email</strong></td>
+          <td><strong>Action</strong></td>
+        </tr>
+      </table>
+    </section>
+
+    <script>
+      var name1 = document.querySelector(".name1");
+      var age1 = document.querySelector(".age1");
+      var email1 = document.querySelector(".email1");
+      var btn = document.querySelector(".btn");
+
+      var container = document.querySelector(".container");
+
+      btn.addEventListener("click", function () {
+        var headlist = document.createElement("tr");
+
+        container.append(headlist);
+
+        var list1 = document.createElement("td");
+
+        headlist.append(list1);
+
+        list1.textContent = name1.value;
+
+        var list2 = document.createElement("td");
+        headlist.append(list2);
+        list2.textContent = age1.value;
+
+        var list3 = document.createElement("td");
+        headlist.append(list3);
+
+        var selectedGender = document.querySelector(
+          'input[name="gender"]:checked'
+        );
+        if (selectedGender) {
+          list3.textContent = selectedGender.value;
+        }
+
+        var list4 = document.createElement("td");
+        headlist.append(list4);
+
+        var selectedOption = document.getElementById("courseSelect");
+        list4.textContent =
+          selectedOption.options[selectedOption.selectedIndex].text;
+
+        var list5 = document.createElement("td");
+        headlist.append(list5);
+        list5.textContent = email1.value;
+
+        var list6 = document.createElement("td");
+        headlist.append(list6);
+        var button = document.createElement("button");
+        list6.append(button);
+        button.textContent = "Delete";
+        button.style.backgroundColor = "red";
+        button.style.color = "white";
+
+        button.addEventListener("click", function () {
+          headlist.remove();
+        });
+      });
+    </script>
+  </body>
+</html>
